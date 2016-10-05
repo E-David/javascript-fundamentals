@@ -95,7 +95,7 @@ console.assert(reverse("we don't want no trouble") === "elbuort on tnaw t'nod ew
  */
 
 var fizzbuzz = function(num) {
-	fizzbuzzString = ""
+	var fizzbuzzString = ""
 	for(var i = 1; i <= num; i++){
 		if(i % 3 === 0 && i % 5 === 0) {
 			fizzbuzzString += "fizzbuzz"
