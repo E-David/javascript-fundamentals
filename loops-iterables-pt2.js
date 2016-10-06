@@ -106,7 +106,31 @@ var iPutTheFunIn = function(stringToFun) {
 console.assert(iPutTheFunIn("funerary") === "funefunrary")
 console.assert(iPutTheFunIn("reds") === "refunds")
 
-// PART 5: write a function called pipeline(). it should take three inputs: (1) a starting value, (2) a function, and (3) another function. it should use functions (2) and (3) on the starting value, one after the other, and return a new value that has been processed by both function (2) and function (3).
+// HARD MODE
+
+// PART 5: write a function called split(). it should take two inputs: (1) a string and (2) a delimiter
+
+var split = function(stringToSplit,delimiter) {
+	var splitString = []
+	var tracker = 0
+	for(var i = 0; typeof stringToSplit[i] !== "undefined" ;i++){
+		if(stringToSplit[i] === delimiter){
+            //slice method may be cheating. tracker + 1 so it doesn't include the delimeter
+			splitString.push(stringToSplit.slice(tracker,i))
+            //start from the position you last split at
+			tracker = i+1
+		}
+	}
+    //using the typeof...undefined method, the loop finishes at the end of the string. method below is to put the rest of the sentence into the array.
+    splitString.push(stringToSplit.slice(tracker))
+	return splitString;
+}
+
+var sentenceTest = 'mom bring your crappy self in here. i want a dang sandwich.'
+
+// obviously, you may not use the native .split() method. your task here is to reverse-engineer .split() and write your own. 
+
+// PART 6: write a function called pipeline(). it should take three inputs: (1) a starting value, (2) a function, and (3) another function. it should use functions (2) and (3) on the starting value, one after the other, and return a new value that has been processed by both function (2) and function (3).
 
 var pipeline = function(input,firstFunction,secondFunction) {
 	var newOutput = firstFunction(input)
