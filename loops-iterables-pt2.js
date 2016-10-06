@@ -113,16 +113,22 @@ console.assert(iPutTheFunIn("reds") === "refunds")
 var split = function(stringToSplit,delimiter) {
 	var splitString = []
 	var tracker = 0
-	for(var i = 0; typeof stringToSplit[i] !== "undefined" ;i++){
-		if(stringToSplit[i] === delimiter){
-            //slice method may be cheating. tracker + 1 so it doesn't include the delimeter
-			splitString.push(stringToSplit.slice(tracker,i))
-            //start from the position you last split at
-			tracker = i+1
-		}
-	}
-    //using the typeof...undefined method, the loop finishes at the end of the string. method below is to put the rest of the sentence into the array.
-    splitString.push(stringToSplit.slice(tracker))
+    if (delimiter === "") {
+        for(var i = 0; i < stringToSplit.length; i++) {
+         splitString.push(stringToSplit[i])
+        }
+    } else {
+        for(var i = 0; typeof stringToSplit[i] !== "undefined" ;i++){
+            if(stringToSplit[i] === delimiter){
+                //slice method may be cheating. tracker + 1 so it doesn't include the delimeter
+                splitString.push(stringToSplit.slice(tracker,i))
+                //start from the position you last split at
+                tracker = i+1
+            }
+        }
+        //using the typeof...undefined method, the loop finishes at the end of the string. method below is to put the rest of the sentence into the array.
+        splitString.push(stringToSplit.slice(tracker))
+    }
 	return splitString;
 }
 
