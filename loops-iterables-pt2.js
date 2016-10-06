@@ -110,26 +110,27 @@ console.assert(iPutTheFunIn("reds") === "refunds")
 
 // PART 5: write a function called split(). it should take two inputs: (1) a string and (2) a delimiter
 
+//I used split. That may be cheating.
 var split = function(stringToSplit,delimiter) {
 	var splitString = []
 	var tracker = 0
-    if (delimiter === "") {
-        for(var i = 0; i < stringToSplit.length; i++) {
-         splitString.push(stringToSplit[i])
-        }
-    } else {
-        for(var i = 0; typeof stringToSplit[i] !== "undefined" ;i++){
-            if(stringToSplit[i] === delimiter){
-                //slice method may be cheating. tracker + 1 so it doesn't include the delimeter
+    //if no argument is given, outputs an array with the unaltered string
+    if(typeof delimiter === "undefined"){
+       splitString = [stringToSplit]
+    }
+    else {
+        //i starts at 1. Otherwise, a delimiter of "" will include a "" as its first element in the array
+        for(var i = 1; typeof stringToSplit[i] !== "undefined" ;i++){
+            if(stringToSplit.slice(i,i+delimiter.length) === delimiter){
                 splitString.push(stringToSplit.slice(tracker,i))
                 //start from the position you last split at
-                tracker = i+1
+                tracker = i+delimiter.length
             }
         }
-        //using the typeof...undefined method, the loop finishes at the end of the string. method below is to put the rest of the sentence into the array.
+        //anything leftover once loop is exited is now pushed to array
         splitString.push(stringToSplit.slice(tracker))
     }
-	return splitString;
+    return splitString;
 }
 
 var sentenceTest = 'mom bring your crappy self in here. i want a dang sandwich.'
